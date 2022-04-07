@@ -6,13 +6,6 @@
     installer_repositories: "{{ php_repositories }}"
     installer_packages: "{{ php_packages }}"
 
-- name: Copy default config
-  become: true
-  ansible.builtin.copy:
-    src: "{{ php_file_path }}/www.conf"
-    dest: "{{ php_file_path }}/www.conf.example"
-    remote_src: true
-
 - name: Remove default config
   become: true
   ansible.builtin.file:
