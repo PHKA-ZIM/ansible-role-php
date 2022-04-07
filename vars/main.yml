@@ -1,0 +1,8 @@
+---
+php_repositories:
+  - ppa:ondrej/php
+
+php_file_path: "/etc/php/{{ php_version }}/fpm/pool.d/"
+php_file_owner: root
+php_file_group: root
+php_file_mode: "644"

@@ -1,0 +1,8 @@
+---
+- name: Install php
+  ansible.builtin.include_tasks: install.yml
+  when: php_uninstall == false
+
+- name: Uninstall php
+  ansible.builtin.include_tasks: uninstall.yml
+  when: php_uninstall == true

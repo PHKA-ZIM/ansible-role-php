@@ -1,0 +1,8 @@
+---
+- name: Remove repositories for php and uninstall it
+  ansible.builtin.import_role:  
+    name: ansible-role-installer
+  vars:
+    installer_repositories: "{{ php_repositories }}"
+    installer_packages: "{{ php_packages }}"
+    installer_uninstall: true
