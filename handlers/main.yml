@@ -4,3 +4,10 @@
   ansible.builtin.service:
     name: "php{{ php_version }}-fpm"
     state: restarted
+
+- name: test configuration
+  become: true
+  ansible.builtin.command:
+    cmd: "{{ php_version }}-fpm -t"
+    register: result
+    failed_when: 'failed' in result.stdout

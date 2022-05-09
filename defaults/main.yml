@@ -2,5 +2,7 @@
 php_version: "7.4"
 php_packages:
   - "php{{ php_version }}-fpm"
-php_local_path: './pool.d/'
+php_local_config_file: ./php-fpm.conf
+php_local_phpini_file: ./php.ini
+php_local_poold_path: ./pool.d/
 php_uninstall: false
