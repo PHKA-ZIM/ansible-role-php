@@ -10,4 +10,4 @@
   ansible.builtin.command:
     cmd: "{{ php_version }}-fpm -t"
     register: result
-    failed_when: 'failed' in result.stdout
+    failed_when: "'failed' in result.stdout"
