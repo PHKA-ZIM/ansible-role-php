@@ -23,7 +23,7 @@
     mode: "{{ php_file_mode }}"
   with_first_found:
     files:
-     - "{{ php_local_config_file }}"
+      - "{{ php_local_config_file }}"
     skip: true
   notify:
     - test configuration
@@ -31,7 +31,7 @@
 
 - name: Copy php ini file
   become: true
-   ansible.builtin.copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ php_path }}/{{ item | basename }}"
     owner: "{{ php_file_owner }}"
@@ -39,7 +39,7 @@
     mode: "{{ php_file_mode }}"
   with_first_found:
     files:
-     - "{{ php_local_phpini_file }}"
+      - "{{ php_local_phpini_file }}"
     skip: true
   notify:
     - test configuration
