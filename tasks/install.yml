@@ -23,9 +23,9 @@
     mode: "{{ php_file_mode }}"
     force: true
   with_first_found:
-    files:
-      - "{{ php_local_config_file }}"
-    skip: true
+    - files:
+        - "{{ php_local_config_file }}"
+      skip: true
   notify:
     - test configuration
     - restart php
@@ -40,9 +40,9 @@
     mode: "{{ php_file_mode }}"
     force: true
   with_first_found:
-    files:
-      - "{{ php_local_phpini_file }}"
-    skip: true
+    - files:
+        - "{{ php_local_phpini_file }}"
+      skip: true
   notify:
     - test configuration
     - restart php
