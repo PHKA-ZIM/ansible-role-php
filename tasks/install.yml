@@ -15,7 +15,7 @@
 
 - name: Copy php config file
   become: true
-   ansible.builtin.copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ php_path }}/{{ item | basename }}"
     owner: "{{ php_file_owner }}"
