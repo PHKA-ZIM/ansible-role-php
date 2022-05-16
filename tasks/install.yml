@@ -47,7 +47,7 @@
         force: true
       with_first_found:
         - files:
-            - "{{ php_fpm_local_config_file }}"
+            - "{{ php_fpm_local_conf_file }}"
           skip: true
       notify:
         - test php-fpm
