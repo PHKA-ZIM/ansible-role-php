@@ -7,7 +7,7 @@
     installer_packages: "{{ php_packages }}"
 
 - name: php cli
-  when: "'php' + php_version + '-cli' in php_packages"
+  when: "'php{{ php_version }}-cli' in php_packages"
   block:
     - name: Copy php cli ini file
       become: true
@@ -27,7 +27,7 @@
         - restart php-fpm
 
 - name: php fpm
-  when: "'php' + php_version + '-fpm' in php_packages"
+  when: "'php{{ php_version }}-fpm' in php_packages"
   block:
     - name: Remove php fpm default pool config
       become: true
