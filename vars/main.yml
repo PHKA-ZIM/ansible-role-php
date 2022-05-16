@@ -2,8 +2,10 @@
 php_repositories:
   - ppa:ondrej/php
 
-php_path: "/etc/php/{{ php_version }}/fpm/"
-php_poold_path: "{{ php_path }}/pool.d/"
+php_path: "/etc/php/{{ php_version }}"
+php_cli_path: "{{ php_path }}/cli/"
+php_fpm_path: "{{ php_path }}/fpm/"
+php_fpm_poold_path: "{{ php_fpm_path }}/pool.d/"
 php_file_owner: root
 php_file_group: root
 php_file_mode: "644"
