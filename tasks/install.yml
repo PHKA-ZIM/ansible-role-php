@@ -14,8 +14,6 @@
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "{{ php_cli_path }}/php.ini"
-        owner: "{{ php_file_owner }}"
-        group: "{{ php_file_group }}"
         mode: "{{ php_file_mode }}"
         force: true
       with_first_found:
@@ -41,8 +39,6 @@
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "{{ php_fpm_path }}/php-fpm.conf"
-        owner: "{{ php_file_owner }}"
-        group: "{{ php_file_group }}"
         mode: "{{ php_file_mode }}"
         force: true
       with_first_found:
@@ -58,8 +54,6 @@
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "{{ php_fpm_path }}/php.ini"
-        owner: "{{ php_file_owner }}"
-        group: "{{ php_file_group }}"
         mode: "{{ php_file_mode }}"
         force: true
       with_first_found:
@@ -75,8 +69,6 @@
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: "{{ php_fpm_poold_path }}"
-        owner: "{{ php_file_owner }}"
-        group: "{{ php_file_group }}"
         mode: "{{ php_file_mode }}"
         force: true
       with_fileglob:
