@@ -1,6 +1,11 @@
 ---
+php_key_url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4f4ea0aae5267a6c
+php_key_path: /etc/apt/keyrings/
+php_key_name: ppa_ondrej_php.gpg
+
 php_repositories:
-  - ppa:ondrej/php
+  - deb [signed-by={{ php_key_path }}{{ php_key_name }}] https://ppa.launchpadcontent.net/ondrej/php/ubuntu {{ ansible_distribution_release }} main 
+  - deb-src  [signed-by={{ php_key_path }}{{ php_key_name }}] https://ppa.launchpadcontent.net/ondrej/php/ubuntu {{ ansible_distribution_release }} main 
 
 php_path: "/etc/php/{{ php_version }}"
 php_cli_path: "{{ php_path }}/cli/"

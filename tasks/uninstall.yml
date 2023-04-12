@@ -13,3 +13,11 @@
     installer_repositories: "{{ php_repositories }}"
     installer_packages: "{{ php_packages }}"
     installer_uninstall: true
+
+- name: Remove apt key
+  ansible.builtin.import_role:
+    name: ansible-role-aptkey
+  vars:
+    aptkey_name: php_key_name
+    aptkey_path: php_key_path
+    aptkey_uninstall: true
