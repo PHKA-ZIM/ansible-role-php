@@ -1,0 +1,11 @@
+- name: Copy php cli ini file
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ php_cli_path }}/php.ini"
+    mode: "{{ php_file_mode }}"
+    force: true
+  with_first_found:
+    - files:
+        - "{{ php_cli_local_ini_file }}"
+      skip: true

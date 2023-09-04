@@ -1,0 +1,49 @@
+- name: Remove php fpm default pool config
+  become: true
+  ansible.builtin.file:
+    path: "{{ php_fpm_poold_path }}/www.conf"
+    state: absent
+  notify: restart php-fpm
+
+- name: Copy php fpm config file
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ php_fpm_path }}/php-fpm.conf"
+    mode: "{{ php_file_mode }}"
+    force: true
+  with_first_found:
+    - files:
+        - "{{ php_fpm_local_conf_file }}"
+      skip: true
+  notify:
+    - test php-fpm
+    - restart php-fpm
+
+- name: Copy php fpm ini file
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ php_fpm_path }}/php.ini"
+    mode: "{{ php_file_mode }}"
+    force: true
+  with_first_found:
+    - files:
+        - "{{ php_fpm_local_ini_file }}"
+      skip: true
+  notify:
+    - test php-fpm
+    - restart php-fpm
+
+- name: Copy php fpm pool.d files
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ php_fpm_poold_path }}"
+    mode: "{{ php_file_mode }}"
+    force: true
+  with_fileglob:
+    - "{{ php_fpm_local_poold_path }}/*.conf"
+  notify:
+    - test php-fpm
+    - restart php-fpm

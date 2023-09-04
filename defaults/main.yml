@@ -5,4 +5,7 @@ php_cli_local_ini_file: ./php/cli/php.ini
 php_fpm_local_conf_file: ./php/fpm/php-fpm.conf
 php_fpm_local_ini_file: ./php/fpm/php.ini
 php_fpm_local_poold_path: ./php/fpm/pool.d/
+
 php_uninstall: false
+php_autoclean: true
+php_purge: true

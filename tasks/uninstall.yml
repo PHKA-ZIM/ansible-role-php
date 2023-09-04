@@ -1,18 +1,20 @@
 ---
-- name: Stop php service
-  when: "'php' + php_version + '-fpm' in php_packages"
+- name: Ensure that packages are uninstalled
   become: true
-  ansible.builtin.service:
-    name: "php{{ php_version }}-fpm"
-    state: stopped
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    autoremove: "{{ php_autoremove }}"
+    purge: "{{ php_purge }}"
+    state: absent
+  loop: "{{ php_packages }}"
 
-- name: Remove repositories for php and uninstall it
-  ansible.builtin.import_role:  
-    name: ansible-role-installer
-  vars:
-    installer_repositories: "{{ php_repositories }}"
-    installer_packages: "{{ php_packages }}"
-    installer_uninstall: true
+- name: Ensure that repositories are uninstalled
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+    update_cache: true
+    state: absent
+  loop: "{{ php_repositories }}"
 
 - name: Remove apt key
   ansible.builtin.import_role:

@@ -1,8 +1,24 @@
 ---
 - name: Install php
-  ansible.builtin.include_tasks: install.yml
   when: php_uninstall == false
+  block:
+    - name: Install
+      ansible.builtin.include_tasks: install.yml
+
+    - name: Setup CLI
+      when: "'php' + php_version + '-cli' in php_packages"
+      ansible.builtin.include_tasks: setup-cli.yml
+
+    - name: Setup FPM
+      when: "'php' + php_version + '-fpm' in php_packages"
+      ansible.builtin.include_tasks: setup-fpm.yml
 
 - name: Uninstall php
-  ansible.builtin.include_tasks: uninstall.yml
   when: php_uninstall == true
+  block:
+    - name: Clean FPM
+      when: "'php' + php_version + '-fpm' in php_packages"
+      ansible.builtin.include_tasks: clean-fpm.yml
+
+    - name: Uninstall
+      ansible.builtin.include_tasks: uninstall.yml
