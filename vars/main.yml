@@ -4,8 +4,8 @@ php_key_path: /etc/apt/keyrings/
 php_key_name: ppa_ondrej_php.asc
 
 php_repositories:
-  - deb [signed-by={{ php_key_path }}{{ php_key_name }}] https://ppa.launchpadcontent.net/ondrej/php/ubuntu {{ ansible_facts['distribution_release '] }} main 
-  - deb-src  [signed-by={{ php_key_path }}{{ php_key_name }}] https://ppa.launchpadcontent.net/ondrej/php/ubuntu {{ ansible_facts['distribution_release '] }} main 
+  - deb [signed-by={{ php_key_path }}{{ php_key_name }}] https://ppa.launchpadcontent.net/ondrej/php/ubuntu {{ ansible_facts['distribution_release'] }} main 
+  - deb-src  [signed-by={{ php_key_path }}{{ php_key_name }}] https://ppa.launchpadcontent.net/ondrej/php/ubuntu {{ ansible_facts['distribution_release'] }} main 
 
 php_path: "/etc/php/{{ php_version }}"
 php_cli_path: "{{ php_path }}/cli/"
