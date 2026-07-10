@@ -4,8 +4,8 @@ php_key_path: /usr/share/keyrings/
 php_key_name: deb.sury.org-php.gpg
 
 php_repositories:
-  - deb [signed-by={{ php_key_path }}{{ php_key_name }}] https://packages.sury.org/php/{{ ansible_facts['distribution_release'] }} main 
-  - deb-src  [signed-by={{ php_key_path }}{{ php_key_name }}] https://packages.sury.org/php/{{ ansible_facts['distribution_release'] }} main 
+  - deb [signed-by={{ php_key_path }}{{ php_key_name }}] https://packages.sury.org/php/ {{ ansible_facts['distribution_release'] }} main 
+  - deb-src  [signed-by={{ php_key_path }}{{ php_key_name }}] https://packages.sury.org/php/ {{ ansible_facts['distribution_release'] }} main 
 
 php_path: "/etc/php/{{ php_version }}"
 php_cli_path: "{{ php_path }}/cli/"
